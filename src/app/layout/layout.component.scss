@@ -1,0 +1,17 @@
+li {
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer
+}
+
+
+button {
+  aspect-ratio: 1/ 1;
+  width: 40px;
+  border-radius: 4px;
+}
+
+li:hover , button:hover {
+  background: color-mix(in srgb, var(--dark-button-background) 20%, white 80%);
+
+}

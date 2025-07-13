@@ -1,0 +1,20 @@
+<div style="display: flex; flex-flow: column; height: calc(100vh - 49.1px); padding: 20px 20px 0 20px">
+  <div #scrollDown
+    style="flex: 1; display: flex; flex-flow: column; gap: 8px;"
+  >
+<!--    <p>traducció: {{ 'test' | translate }}</p>-->
+    <div *ngFor="let message of chatStore.messages$ | async"
+          style="border-radius: 16px; max-width: 75%; padding: 6px 10px; border: 1px solid; width: fit-content; line-height: 1.2rem"
+         [style.background]="message.role == 'user' ? 'var(--dark-button-background)' : 'var(--background-color)'"
+          [style.color]="message.role == 'user' ? 'white' : 'inherit'"
+         [style.align-self]="message.role == 'user' ? 'end' : 'start'"
+         [style.display]="message.role == 'system' ? 'none' : 'block'"
+        >
+      {{ message.content }}
+
+    </div>
+    <br> <br> <br> <br> <br>
+  </div>
+
+  <app-chat-input style="position: sticky; bottom: 0; width: 100%;" ></app-chat-input>
+</div>

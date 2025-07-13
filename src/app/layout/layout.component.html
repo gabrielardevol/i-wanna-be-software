@@ -1,0 +1,38 @@
+<confetti-layout [menu]="menu" >
+  <nav nav style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid; padding: 4px;">
+<!--    <div style="width: 0; overflow: visible">-->
+      <button routerLink="/chat">
+        <i class="bi bi-chat-fill"></i>
+      </button>
+<!--    </div>-->
+    <p routerLink="/">Gabriel</p>
+<!--    <div style="width: 0; overflow: visible; justify-content: end; display: flex">-->
+      <button (click)="$event.stopPropagation(); menu = true">
+        <i class="bi bi-three-dots-vertical"></i>
+      </button>
+<!--    </div>-->
+  </nav>
+  <div menu #menu *ngIf="menu" style="background: var(--sidebar-background-color); border-radius: 12px; ">
+
+    <ul style="display: flex; flex-flow: column; ">
+      <li routerLink="/about">about</li>
+      <hr>
+      <li routerLink="/projects">projects</li>
+      <hr>
+      <li routerLink="/stack">stack</li>
+      <hr>
+      <li routerLink="/cv">CV</li>
+    </ul>
+  </div>
+
+  <confetti-background content>
+
+    <confetti-fillers-container>
+      <div style="max-width: 500px; width: 100%">
+        <router-outlet></router-outlet>
+      </div>
+    </confetti-fillers-container>
+
+  </confetti-background>
+
+</confetti-layout>
