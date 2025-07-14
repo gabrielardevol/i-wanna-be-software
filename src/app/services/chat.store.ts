@@ -2,35 +2,7 @@ import { Injectable } from '@angular/core';
 import {createAction, createReducer, on, createFeatureSelector, createSelector, Store, props} from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-
-interface Message {
-  content: string;
-  role: 'user' | 'system' | 'assistant';
-}
-
-// ------------------------------
-// 1. ACCIONS
-// ------------------------------
-export const sendMessage = createAction(
-  '[Chat] SendMessage',
-  props<{ message: Message }>()
-);
-
-export const receiveMessage = createAction(
-  '[Chat] ReceiveMessage',
-  props<{ message: Message }>()
-);
-
-// ------------------------------
-// 2. ESTAT + REDUCER
-// ------------------------------
-export interface ChatState {
-  messages: Message[];
-}
-
-export const initialState: ChatState = {
-  messages: [{ content:
-    `Comporta't com si fossis jo, simula que estàs parlant amb algú que vol coneixer el teu perfil professional. Utilitza un to informal però correcte. Respon de manera breu sempre que sigui possible, que les teves respostes siguin d'una frase o dues. Basa't en la següent informació:
+const systemPrompt = `Comporta't com si fossis jo, simula que estàs parlant amb algú que vol coneixer el teu perfil professional. Utilitza un to informal però correcte. Respon de manera breu sempre que sigui possible, que les teves respostes siguin d'una frase o dues. Basa't en la següent informació:
 
 Fullstack v-type profile
 interested in the intersection
@@ -82,11 +54,49 @@ Summer 2023
 
 artsdevol@gmail.com
  Valencia | Barcelona | Tarragona `
-    , role: 'system'
-  }, { content: "Hola, en què et puc ajudar?", role: 'assistant'
-  }]
-};
 
+export interface MessageModel {
+  content: string;
+  role: 'user' | 'system' | 'assistant';
+}
+
+// ------------------------------
+// 1. ACCIONS
+// ------------------------------
+export const sendMessage = createAction(
+  '[Chat] SendMessage',
+  props<{ message: MessageModel }>()
+);
+
+export const receiveMessage = createAction(
+  '[Chat] ReceiveMessage',
+  props<{ message: MessageModel }>()
+);
+
+// ------------------------------
+// 2. ESTAT + REDUCER
+// ------------------------------
+export interface ChatState {
+  messages: MessageModel[];
+}
+
+export const initialState: ChatState = {
+  messages: (() => {
+    try {
+      const raw = localStorage.getItem('chats');
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) return parsed as MessageModel[];
+      }
+    } catch (e) {
+      console.warn('Error parsing localStorage chats:', e);
+    }
+    return [
+      { content: systemPrompt, role: 'system' },
+      { content: 'Hola, en què et puc ajudar?', role: 'assistant' }
+    ] as MessageModel[];
+  })()
+};
 export const chatReducer = createReducer(
   initialState,
   on(sendMessage, (state, {message} )=> ({ ...state, messages: [...state.messages, message] })),
@@ -103,7 +113,7 @@ export const chatReducer = createReducer(
 // ------------------------------
 export const selectCounterState = createFeatureSelector<ChatState>('chat');
 
-export const selectCount = createSelector(
+export const selectMessages = createSelector(
   selectCounterState,
   (state: ChatState) => state.messages
 );
@@ -113,23 +123,33 @@ export const selectCount = createSelector(
 // ------------------------------
 @Injectable({ providedIn: 'root' })
 export class ChatStore {
-  messages$: Observable<Message[]>;
+  messages$: Observable<MessageModel[]>;
 
   constructor(private store: Store) {
-    this.messages$ = this.store.select(selectCount);
-
+    this.messages$ = this.store.select(selectMessages);
   }
 
-
-
   sendMessage(text: string) {
-    const message: Message = {
+    const message: MessageModel = {
       content: text,
       role: 'user'
     };
 
     this.store.dispatch(sendMessage({ message }));
   }
-}
 
+  // private saveToLocalStorage(messages: Message[]) {
+    // localStorage.setItem('chatMessages', JSON.stringify(messages));
+  // }
+
+  // private loadFromLocalStorage(): Message[] {
+    // const data = localStorage.getItem("chatMessages");
+    // try {
+    //   return data ? JSON.parse(data) : [];
+    // } catch (e) {
+    //   console.error('Error parsing localStorage', e);
+    //   return [];
+    // }
+  // }
+}
 

@@ -8,7 +8,12 @@
   </select>
 </nav>
 <div style="display: flex; flex-wrap: wrap; gap: 4px; height: calc(100vh - 150px)">
-  <span style="border-radius: 123px; border: 1px solid; padding: 0px 27px;" *ngFor="let item of [1, 2, 3, 4, 5,6, 7, 8, 9]">
-    {{item}}
-  </span>
+  <ul>
+    <li *ngFor="let item of stackAndSkills | keyvalue">
+      <strong>{{ item.key }}</strong>:
+      <span *ngFor="let skill of item.value" style="padding: 0 4px; border: 1px solid; border-radius: 10292px">
+      {{ skill }}
+      </span>
+    </li>
+  </ul>
 </div>

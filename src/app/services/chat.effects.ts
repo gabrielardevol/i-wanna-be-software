@@ -1,31 +1,16 @@
 import {inject, Injectable} from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { sendMessage, receiveMessage } from './chat.store';
-import { ChatService } from './chat.service';
-import {switchMap, map, catchError, tap} from 'rxjs/operators';
+import {sendMessage, receiveMessage, selectMessages} from './chat.store';
+import { ChatApi } from './chat.api';
+import {switchMap, map, catchError, tap, withLatestFrom} from 'rxjs/operators';
 import { of } from 'rxjs';
+import {Store} from '@ngrx/store';
 
 @Injectable()
-// export class ChatEffects {
-//   // Effect que només fa console.log
-//   // constructor(private readonly actions$: Actions) {}
-//   private actions$ = inject(Actions);
-//
-//   logSendMessage$ = createEffect(
-//     () =>
-//
-//       this.actions$!.pipe(
-//         ofType(sendMessage),
-//         tap(({ message }) => {
-//           console.log('Missatge enviat pel user:', message.text);
-//         })
-//       ),
-//     { dispatch: false } // No volem retornar cap acció nova
-//   );
-// }
 export class ChatEffects {
   private actions$ = inject(Actions);
-  private readonly chatService = inject(ChatService);
+  private readonly chatService = inject(ChatApi);
+  private readonly store = inject(Store);
 
   sendMessage$ = createEffect(() => {
     return this.actions$.pipe(
@@ -43,8 +28,13 @@ export class ChatEffects {
     );
   });
 
-  // constructor(
-  //   private readonly actions$: Actions,
-  //   private readonly chatService: ChatService
-  // ) {}
+  persistMessages$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(sendMessage, receiveMessage),
+      withLatestFrom(this.store.select(selectMessages)),
+      tap(([_, messages]) => {
+        localStorage.setItem('chats', JSON.stringify(messages));
+      })
+    );
+  }, { dispatch: false });
 }

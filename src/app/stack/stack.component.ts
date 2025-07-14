@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import {NgForOf} from '@angular/common';
+import {KeyValuePipe, NgForOf} from '@angular/common';
 
 @Component({
   selector: 'app-stack',
   imports: [
-    NgForOf
+    NgForOf,
+    KeyValuePipe
   ],
   templateUrl: './stack.component.html',
   styleUrl: './stack.component.scss'
@@ -47,11 +48,11 @@ export class StackComponent {
       "Github",
       "IntelliJ"
     ],
-    "idiomes": {
-      "espanyol": "nadiu",
-      "català": "nadiu",
-      "anglès": "professional"
-    },
+    // "idiomes": {
+    //   "espanyol": "nadiu",
+    //   "català": "nadiu",
+    //   "anglès": "professional"
+    // },
   }
 
   widget = "Conceptualització, disseny i implementació d’un widget tipus galeria d’imatges, amb redirecció a e-commerce i traqueig dels KPIs de tràfic i clicks, amb abstracció complexa, així com desenvolupament de l'entorn d'edició en plataforma SaaS. Optimització de les plantilles per a la interacció web i mòbil."

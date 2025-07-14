@@ -13,12 +13,12 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'chat', component: ChatComponent },
-      { path: 'home', component: HomeComponent },
+      // { path: 'home', component: HomeComponent },
       { path: 'about', component: AboutComponent },
       { path: 'projects', component: ProjectsComponent },
       { path: 'stack', component: StackComponent },
       { path: 'cv', component: CvComponent },
-      { path: '', redirectTo: 'home', pathMatch: 'full' }
+      { path: '', component: ChatComponent  }
     ]
   }
 ];
