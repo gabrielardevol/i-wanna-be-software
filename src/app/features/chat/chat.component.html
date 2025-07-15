@@ -1,0 +1,55 @@
+<style>
+  .message {
+    /*border-radius: 16px;*/
+    /*max-width: 75%;*/
+    /*padding: 6px 10px;*/
+    /*width: fit-content;*/
+    /*line-height: 1.2rem;*/
+    /*display: block;*/
+  }
+
+  .message.user {
+    align-self: flex-end;
+    background: var(--dark-button-background);
+    color: white;
+  }
+
+  .message.assistant {
+    align-self: flex-start;
+    background: var(--background-color);
+    color: inherit;
+    border: 1px solid;
+  }
+</style>
+<div #scrollDown style="display: flex; flex-flow: column; height: calc(100vh - var(--navbar-height)); padding: 20px 20px 0 20px">
+  <div
+    style="flex: 1; display: flex; flex-flow: column; gap: 8px;"
+  >
+<!--    <p>traducció: {{ 'test' | translate }}</p>-->
+    <div class="message rounded-2xl max-w-[75%] py-2 px-3 w-fit" *ngFor="let message of messages, let i = index"
+          style="line-height: 1.2rem"
+         [style.display]="message.role == 'system' ? 'none' :
+         message.role == 'assistant' && i == messages.length - 1 ? 'none' :
+         'block'"
+         [ngClass]="{
+          'user': message.role === 'user',
+          'assistant': message.role === 'assistant',
+          'last-message': i === messages.length - 1 && lastMessage?.role === 'assistant'
+        }"
+        >
+      {{!(i == (messages.length - 1) && lastMessage?.role == 'assistant') ? removeEmotionNotation(message.content) : '' }}
+    </div>
+    <div class="message assitant border-none" style="border-radius: 16px; max-width: 75%; padding: 6px 10px; width: fit-content; line-height: 1.2rem"
+      [style.display]="!(lastMessage) || lastMessage.role == 'assistant' ? 'block' : 'none'" #lastMessageContainer    >
+    </div>
+
+<app-loader *ngIf="lastMessage?.role == 'user'"></app-loader>
+    <br> <br> <br> <br> <br> <br> <br> <br>
+  </div>
+
+  <div class="sticky bottom-0 w-full flex items-end flex-col">
+
+    <app-chat-input [disabled]="disabled" class="mb-5" />
+    <app-chat-avatar [emotion]="emotion" [char]="imgChar" class="flex items-end justify-end"/>
+  </div>
+</div>

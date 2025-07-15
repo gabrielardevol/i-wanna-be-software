@@ -1,8 +1,9 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {ChatInputComponent} from './chat-input.component';
-import {ChatStore, MessageModel} from '../services/chat.store';
+import {ChatStore, MessageModel} from './services/chat.store';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
-import {LoaderComponent} from '../components/loader.component';
+import {LoaderComponent} from '../../components/loader.component';
+import {ChatAvatarComponent} from './chat-avatar.component';
 
 @Component({
   selector: 'app-chat',
@@ -11,7 +12,8 @@ import {LoaderComponent} from '../components/loader.component';
     NgForOf,
     LoaderComponent,
     NgIf,
-    NgClass
+    NgClass,
+    ChatAvatarComponent
   ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
@@ -22,18 +24,20 @@ export class ChatComponent {
   lastMessage: MessageModel | undefined = undefined;
   imgChar: string = "";
   emotion: string = "[neutral]"
+  disabled: boolean = false;
 
   constructor(
     public chatStore: ChatStore,
   ) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.chatStore.messages$.subscribe(messages => {
       this.scrollToBottom()
+      this.disabled = true;
       const lastMsg = messages[messages.length - 1];
       if (lastMsg.role === 'assistant') {
-        setTimeout(() => {
+        setTimeout(async () => {
           this.lastMessage = lastMsg;
           this.messages = messages;
           this.typeLastMessage()
@@ -42,15 +46,21 @@ export class ChatComponent {
         this.lastMessage = lastMsg;
         this.messages = messages;
       }
+
     });
+    this.scrollToBottom();
+
   }
 
-  ngAfterViewInit() {
+  ngAfterViewChecked() {
     this.scrollToBottom();
   }
 
   scrollToBottom() {
-    let scrollTargets = document.querySelectorAll(".confetti-container"); //TECNICAL DEBT
+    //TECNICAL DEBT
+    let scrollTargets = document.querySelectorAll(".confetti-container");
+    console.log("scrollTargets", scrollTargets)
+    //TECNICAL DEBT
     scrollTargets.forEach((elRef: Element) => {
       const el = elRef as HTMLElement;
       el.scrollTop = el.scrollHeight;
@@ -86,12 +96,15 @@ export class ChatComponent {
         i++;
       }
 
-      this.scrollToBottom()
-
-      if (i >= text.length) {
+      if (i >= text.length - 1) {
         this.imgChar = '.';
         clearInterval(interval);
+        this.disabled = false
       }
     }, 60);
+  }
+
+  removeEmotionNotation(content: string) {
+    return content.replace(/\[[^\]]*\]/g, '').trim();
   }
 }
