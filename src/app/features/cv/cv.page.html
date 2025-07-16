@@ -1,0 +1,31 @@
+<style>
+  ::ng-deep ngx-extended-pdf-viewer {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 105% !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+</style>
+<div>
+
+
+
+    <a href="ardevol_cv.pdf" download>
+      <button class="h-12 aspect-square flex items-center py-1 px-3 text-white w-fit bg-[var(--confetti-primary)] rounded-lg" >
+        Descargar
+        <i class="pl-2 bi bi-download outline-1" style="color: var(--dark-button-text-color)"></i>
+      </button>
+      <br>
+    </a>
+  <div class="rounded-md h-full overflow-hidden">
+    <pdf-viewer
+      [src]="'ardevol_cv.pdf'"
+      [render-text]="true"
+      [original-size]="false"
+      style="display: block; width: 100%; height: 90vh; background: white"
+    ></pdf-viewer>
+  </div>
+
+
+</div>

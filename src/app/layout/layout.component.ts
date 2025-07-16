@@ -21,12 +21,9 @@ import {TranslatePipe} from '@ngx-translate/core';
 })
 export class LayoutComponent {
   menu: boolean = false;
-  routes: string[] = ['about', 'stack', 'projects', 'cv'];
+  routes: string[] = ['/about', '/stack', '/projects', '/cv'];
 
   constructor(private eRef: ElementRef, readonly router: Router, ) {}
-
-  ngOnInit() {
-  }
 
 
   @HostListener('document:click', ['$event'])
@@ -36,7 +33,6 @@ export class LayoutComponent {
   }
 
   goToNextPage(): void {
-    console.log('LayoutComponent');
 
     const index = this.routes.indexOf(this.router.url);
     if (index !== -1 && index < this.routes.length - 1) {
@@ -47,13 +43,15 @@ export class LayoutComponent {
   }
 
   goToPrevPage(): void {
-    console.log('LayoutComponent');
 
     const index = this.routes.indexOf(this.router.url);
     if (index > 0) {
       const prev = this.routes[index - 1];
       console.log(prev)
-      this.router.navigate([prev]);
+      this.router.navigate(['/'+prev]).then(r =>
+      {console.log("hola")});
     }
   }
+
+  protected readonly location = location;
 }

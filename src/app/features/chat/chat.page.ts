@@ -15,10 +15,10 @@ import {ChatAvatarComponent} from './chat-avatar.component';
     NgClass,
     ChatAvatarComponent
   ],
-  templateUrl: './chat.component.html',
-  styleUrl: './chat.component.scss'
+  templateUrl: './chat.page.html',
+  styleUrl: './chat.page.scss'
 })
-export class ChatComponent {
+export class ChatPage {
   @ViewChild('lastMessageContainer') lastMessageContainer!: ElementRef;
   messages: MessageModel[] = []
   lastMessage: MessageModel | undefined = undefined;
@@ -53,7 +53,7 @@ export class ChatComponent {
   }
 
   ngAfterViewChecked() {
-    this.scrollToBottom();
+    // this.scrollToBottom();
   }
 
   scrollToBottom() {
@@ -96,7 +96,7 @@ export class ChatComponent {
         i++;
       }
 
-      if (i >= text.length - 1) {
+      if (i >= text.length) {
         this.imgChar = '.';
         clearInterval(interval);
         this.disabled = false

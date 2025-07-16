@@ -9,11 +9,12 @@ hr {
 }
 
 button {
-  aspect-ratio: 1/ 1;
-  width: 48px;
+  //aspect-ratio: 1/ 1;
+  height: 48px;
+  padding: 12px;
   border-radius: 12px;
 }
 
 li:hover , button:hover {
-  background: color-mix(in srgb, var(--dark-button-background) 15%, white 85%);
+  background: color-mix(in srgb, var(--dark-button-background) 10%, transparent 90%);
 }

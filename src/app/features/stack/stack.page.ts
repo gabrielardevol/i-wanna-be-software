@@ -9,10 +9,10 @@ import {TranslatePipe} from '@ngx-translate/core';
     KeyValuePipe,
     TranslatePipe
   ],
-  templateUrl: './stack.component.html',
-  styleUrl: './stack.component.scss'
+  templateUrl: './stack.page.html',
+  styleUrl: './stack.page.scss'
 })
-export class StackComponent {
+export class StackPage {
 
   colors = [
     "var(--confetti-primary)",

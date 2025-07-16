@@ -29,7 +29,7 @@ import {ChatStore} from './services/chat.store';
            src="u.png">
 
   `,
-  styleUrl: './chat.component.scss'
+  styleUrl: './chat.page.scss'
 })
 export class ChatAvatarComponent {
 

@@ -6,10 +6,10 @@ import {TranslatePipe} from '@ngx-translate/core';
   imports: [
     TranslatePipe
   ],
-  templateUrl: './about.component.html',
-  styleUrl: './about.component.scss'
+  templateUrl: './about.page.html',
+  styleUrl: './about.page.scss'
 })
-export class AboutComponent {
+export class AboutPage {
 
 
 }

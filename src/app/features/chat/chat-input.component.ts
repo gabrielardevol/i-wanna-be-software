@@ -25,7 +25,7 @@ import {ChatStore} from './services/chat.store';
         </confetti-background>
       </form>
   `,
-  styleUrl: './chat.component.scss'
+  styleUrl: './chat.page.scss'
 })
 export class ChatInputComponent {
 

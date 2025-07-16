@@ -1,13 +1,13 @@
-<nav>
-  <label for="color">Filter by:</label>
-  <select id="color" name="color">
-    <option value="vermell">Vermell</option>
-    <option value="blau">Blau</option>
-    <option value="verd">Verd</option>
-    <option value="groc">Groc</option>
-  </select>
-</nav>
-<div style="display: flex; flex-wrap: wrap; gap: 4px; height: calc(100vh - 150px)">
+<!--<nav>-->
+<!--  <label for="color">Filter by:</label>-->
+<!--  <select id="color" name="color">-->
+<!--    <option value="vermell">Vermell</option>-->
+<!--    <option value="blau">Blau</option>-->
+<!--    <option value="verd">Verd</option>-->
+<!--    <option value="groc">Groc</option>-->
+<!--  </select>-->
+<!--</nav>-->
+<div style="display: flex; flex-wrap: wrap; gap: 4px;">
   <ul class="flex flex-col gap-4">
     <ul *ngFor="let item of stackAndSkills | keyvalue:keepOriginalOrder, let i = index" class="flex gap-2 flex-wrap">
       <strong [style.color]="'color-mix(in srgb,' +colors[i]+' 70%,' + 'black 30%' + ')'">{{ 'stack.' + item.key | translate }}</strong>:

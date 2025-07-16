@@ -8,9 +8,9 @@ import {ConfettiBackgroundComponent} from 'confettti';
     PdfViewerModule,
     ConfettiBackgroundComponent
   ],
-  templateUrl: './cv.component.html',
-  styleUrl: './cv.component.scss'
+  templateUrl: './cv.page.html',
+  styleUrl: './cv.page.scss'
 })
-export class CvComponent {
+export class CvPage {
 
 }
