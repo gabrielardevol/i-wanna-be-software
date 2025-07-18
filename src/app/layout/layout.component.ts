@@ -1,7 +1,7 @@
 import {Component, ElementRef, HostListener} from '@angular/core';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {ConfettiBackgroundComponent, ConfettiLayout, FillersContainerComponent} from 'confettti';
-import {NgIf, NgStyle} from '@angular/common';
+import {NgClass, NgIf, NgStyle} from '@angular/common';
 import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
@@ -14,14 +14,15 @@ import {TranslatePipe} from '@ngx-translate/core';
     ConfettiBackgroundComponent,
     FillersContainerComponent,
     NgStyle,
-    TranslatePipe
+    TranslatePipe,
+    NgClass
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
   menu: boolean = false;
-  routes: string[] = ['/about', '/stack', '/projects', '/cv'];
+  routes: string[] = ['/about', '/stack', '/cv'];
 
   constructor(private eRef: ElementRef, readonly router: Router, ) {}
 

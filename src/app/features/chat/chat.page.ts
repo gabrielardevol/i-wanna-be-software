@@ -88,7 +88,7 @@ export class ChatPage {
         this.emotion += text.charAt(i);
         i++;
       } else {
-        this.lastMessageContainer.nativeElement.style.border = '1px solid'
+        this.lastMessageContainer.nativeElement.style.border = '1px solid var(--border-color)'
         element.textContent += text.charAt(i);
         if (['a', 'e', 'i', 'o', 'u', ' '].includes(text.charAt(i))) {
           this.imgChar = text.charAt(i);
@@ -105,6 +105,9 @@ export class ChatPage {
   }
 
   removeEmotionNotation(content: string) {
-    return content.replace(/\[[^\]]*\]/g, '').trim();
-  }
+    if (typeof content !== 'string') {
+      console.log('content: ', content);
+      return ''; // o pots retornar content?.toString() si vols convertir-ho
+    }
+    return content.replace(/\[[^\]]*\]/g, '').trim();  }
 }

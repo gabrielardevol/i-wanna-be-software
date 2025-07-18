@@ -1,3 +1,59 @@
-* {
-  font-weight: 500;
+li {
+  ;
+  border-radius: 8px;
+  padding: 6px;
 }
+
+ul {
+  display: flex;
+  flex-flow: column;
+  gap: 4px;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-list li {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* GitHub */
+.contact-list .github {
+  background: color-mix(in srgb, var(--confetti-primary) 15%, transparent 85%);
+}
+
+/* LinkedIn */
+.contact-list .linkedin {
+  color: color-mix(in srgb, var(--confetti-primary) 70%, black 30%);
+  background: color-mix(in srgb, var(--confetti-primary) 8%, transparent 92%);
+}
+
+/* WhatsApp */
+.contact-list .whatsapp {
+  color: color-mix(in srgb, var(--confetti-tertiary) 70%, black 30%);
+  background: color-mix(in srgb, var(--confetti-tertiary) 10%, transparent 90%);
+}
+
+.contact-list .whatsapp i {
+  color: color-mix(in srgb, var(--confetti-tertiary) 70%, black 30%);
+}
+
+/* Email */
+.contact-list .email {
+  color: color-mix(in srgb, var(--confetti-quaternary) 70%, black 30%);
+  background: color-mix(in srgb, var(--confetti-quaternary) 10%, transparent 90%);
+}
+
+.contact-list .email i {
+  color: color-mix(in srgb, var(--confetti-quaternary) 70%, black 30%);
+}
+

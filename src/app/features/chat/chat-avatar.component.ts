@@ -16,7 +16,7 @@ import {ChatStore} from './services/chat.store';
   template: `
 
       <img style="object-fit: contain; height: 300px; position: absolute; z-index: -10"
-           src="gabru.png">
+           src="n.png">
       <img *ngIf="char.toLowerCase() == 'a'" #chatImg style="object-fit: contain; height: 300px; position: absolute; z-index: -10"
            src="a.png">
       <img *ngIf="char.toLowerCase() == 'e'" #chatImg style="object-fit: contain; height: 300px; position: absolute; z-index: -10"

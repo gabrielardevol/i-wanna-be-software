@@ -15,7 +15,7 @@ export class ChatApi {
   }
 
   callGroqApi(userMessage: string): Observable<string> {
-
+    console.log('userMessage from chat.api.ts', userMessage)
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${environment.gorqApiKey}`,
@@ -25,8 +25,8 @@ export class ChatApi {
       take(1),
       switchMap(messagesFromStore => {
         const body = {
-          // model: 'llama-3.3-70b-versatile',
-          model: 'meta-llama/llama-4-scout-17b-16e-instruct',
+          model: 'llama-3.3-70b-versatile',
+          // model: 'meta-llama/llama-4-scout-17b-16e-instruct',
           messages: [
             ...messagesFromStore,
             {role: 'user', content: userMessage},

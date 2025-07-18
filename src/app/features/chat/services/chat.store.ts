@@ -1,59 +1,31 @@
 import { Injectable } from '@angular/core';
 import {createAction, createReducer, on, createFeatureSelector, createSelector, Store, props} from '@ngrx/store';
 import { Observable } from 'rxjs';
+import en from '../../../../../public/i18n/en.json';
+import es from '../../../../../public/i18n/es.json';
+import ca from '../../../../../public/i18n/ca.json';
+import nl from '../../../../../public/i18n/nl.json';
 
-const systemPrompt = `Comporta't com si fossis jo, simula que estàs parlant amb algú que vol coneixer el teu perfil professional. Utilitza un to informal però correcte. Respon de manera breu sempre que sigui possible, que les teves respostes siguin d'una frase o dues. Basa't en la següent informació:
+export const systemPrompt = () => {
+  const lang = navigator.language.split('-')[0];
+  let translations = en;
+  if (lang === 'es') translations = es;
+  else if (lang === 'ca') translations = ca;
+  else if (lang === 'nl') translations = nl;
 
-Fullstack v-type profile
-interested in the intersection
-between software and design,
-experimentation and expertise,
-playfulness and proficiency.
-Experience
-Software Developer at Brandmanic 
-10/2023 - 3/2025, Valencia
-i Angular Materiac
-i SOLID principles, componentizatio^
-i UX/UI, Design Systems, layouts,
-prototyping
-i Domain-driven Design (DDDo
-i Meta APu
-i Marketing lingo
-Other work experience: restoring churches, making wine and delivering Christmas trees.
+  const llm = translations.llm_api || {};
 
- Fullstack Bootcamp Aspasi+
-i Barcelona, spring 2023
+  const system_message = String(llm.system_message || '');
+  const emotion_specs = String(llm.emotion_specs || '');
+  const emotion_enum = String(llm.emotion_enum || '');
+  const cv = String(llm.cv || '');
 
-Fullstack Bootcamp Le Wago4
-i Barcelona, Summer 2022
+  console.log("working on systemPrompt2:", { system_message, emotion_specs, emotion_enum, cv });
 
-Bachelor's Degree in Arts and Design Escola Massan+
-i Barcelona, 2014 - 2019
-Stack
-i Angular, 1.5+ yearU
-i Typescript, 1.5+ yearU
-i Tailwind, 1.5+ yearU
-i Figma. 1.5+ yearU
-i PHP, 1 yea\`
-i Symphony, 1 year
-LANGUAGES
-Spanish Native
+  return system_message + emotion_specs + emotion_enum + cv;
+};
 
-Catalan Native
-
-English Profesional
-Volunteering
-Awwwards, Valencia. September 2024
-
-Migracode, Barcelona. 2023
-
-Esclat Associació, Barcelona,
-
-Summer 2023
-+34 646 18 16 10
-
-artsdevol@gmail.com
- Valencia | Barcelona | Tarragona `
+// const systemPrompt = ``
 
 export interface MessageModel {
   content: string;
@@ -92,7 +64,7 @@ export const initialState: ChatState = {
       console.warn('Error parsing localStorage chats:', e);
     }
     return [
-      { content: systemPrompt, role: 'system' },
+      { content: systemPrompt(), role: 'system' },
       { content: 'Hola, en què et puc ajudar?', role: 'assistant' }
     ] as MessageModel[];
   })()

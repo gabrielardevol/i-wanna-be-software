@@ -11,6 +11,7 @@
   --confetti-quaternary: #ff8100;
 
   --border-color: color-mix(in srgb, var(--confetti-primary) 80%, black 20%);
+  //--border-color: red;
   --text-color: color-mix(in srgb, var(--confetti-primary) 80%, black 20%);
 
   --background-color: color-mix(in srgb, var(--confetti-primary) 7%, white 93%);
@@ -53,6 +54,9 @@ body {
   border-top-width: 1px;
 }
 
+* {
+  border-color: var(--border-color);
+}
 
 .confetti-button-dark {
   background-color: var(--dark-button-background);

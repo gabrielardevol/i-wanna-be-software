@@ -1,33 +1,26 @@
 <style>
   .message {
-    /*border-radius: 16px;*/
-    /*max-width: 75%;*/
-    /*padding: 6px 10px;*/
-    /*width: fit-content;*/
-    /*line-height: 1.2rem;*/
-    /*display: block;*/
-  }
-
-  .message.user {
-    align-self: flex-end;
-    background: var(--dark-button-background);
-    color: white;
+    @apply max-w-[75%] py-2 px-3 w-fit;
+    line-height: 1.2rem;
+    border-radius: 18px;
   }
 
   .message.assistant {
     align-self: flex-start;
-    background: var(--background-color);
+    background: var(--dark-button-background);
+    color: white;
+  }
+
+  .message.user {
+    background: color-mix(in srgb, var(--dark-button-background) 25%, white 75%);
+    align-self: flex-end;
+    /*background: var(--background-color);*/
     color: inherit;
-    border: 1px solid;
   }
 </style>
-<div #scrollDown style="display: flex; flex-flow: column; height: calc(100vh - var(--navbar-height)); padding: 20px 20px 0 20px">
-  <div
-    style="flex: 1; display: flex; flex-flow: column; gap: 8px;"
-  >
-<!--    <p>traducció: {{ 'test' | translate }}</p>-->
-    <div class="message rounded-2xl max-w-[75%] py-2 px-3 w-fit" *ngFor="let message of messages, let i = index"
-          style="line-height: 1.2rem"
+<div #scrollDown class="flex flex-col" style="height: calc(100vh - var(--navbar-height)); padding: 20px 20px 0 20px">
+  <div class="flex-1 flex flex-col gap-2">
+    <div class="message " *ngFor="let message of messages, let i = index"
          [style.display]="message.role == 'system' ? 'none' :
          message.role == 'assistant' && i == messages.length - 1 ? 'none' :
          'block'"
@@ -39,7 +32,7 @@
         >
       {{!(i == (messages.length - 1) && lastMessage?.role == 'assistant') ? removeEmotionNotation(message.content) : '' }}
     </div>
-    <div class="message assitant border-none" style="border-radius: 16px; max-width: 75%; padding: 6px 10px; width: fit-content; line-height: 1.2rem"
+    <div class="message assistant"
       [style.display]="!(lastMessage) || lastMessage.role == 'assistant' ? 'block' : 'none'" #lastMessageContainer    >
     </div>
 
