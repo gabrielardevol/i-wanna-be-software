@@ -7,23 +7,23 @@
     box-sizing: border-box;
   }
 </style>
-<div>
-
-
-
-    <a href="ardevol_cv.pdf" download>
-      <button class="h-12 aspect-square flex items-center py-1 px-3 text-white w-fit bg-[var(--confetti-primary)] rounded-lg" >
-        Descargar
-        <i class="pl-2 bi bi-download outline-1" style="color: var(--dark-button-text-color)"></i>
+<div class="flex flex-col items-end">
+    <a href="ardevol_cv.pdf" class="w-min" download >
+      <button class="p-2 m-2 text-white w-10 h-10 aspect-square bg-[var(--text-color)] rounded-lg" >
+        <i class="bi bi-download outline-1" style="color: var(--dark-button-text-color)"></i>
       </button>
       <br>
     </a>
-  <div class="rounded-md h-full overflow-hidden" style="">
+  <div class="rounded-md h-full w-full overflow-hidden border">
+    <app-loader class="p-4" *ngIf="!loaded"></app-loader>
     <pdf-viewer
       [src]="'ardevol_cv.pdf'"
       [render-text]="true"
       [original-size]="false"
-      style="display: block; width: 100%; height: calc(100vh - 250px); background: white"
+      [fit-to-page]="true"
+      [show-all]="true"
+      (after-load-complete)="loaded = true"
+      style="display: block; width: 100%; height: calc(100vh - 200px); background: white"
     ></pdf-viewer>
   </div>
 

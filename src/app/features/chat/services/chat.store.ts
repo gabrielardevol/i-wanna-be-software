@@ -6,6 +6,14 @@ import es from '../../../../../public/i18n/es.json';
 import ca from '../../../../../public/i18n/ca.json';
 import nl from '../../../../../public/i18n/nl.json';
 
+export const greetingsMessage = () => {
+  const lang = navigator.language.split('-')[0];
+  if (lang === 'es') return "Hola, ¿en qué puedo ayudarte?";
+  else if (lang === 'ca') return "Hola, en què et puc ajudar?";
+  else if (lang === 'nl') return "Hola, ¿en qué puedo ayudarte?";
+  else return "Welcome, anything I can do for you?";
+}
+
 export const systemPrompt = () => {
   const lang = navigator.language.split('-')[0];
   let translations = en;

@@ -1,9 +1,29 @@
 {
-  "test": "this text is for testing",
+  "test": "this is a text for testing",
+  "stack": {
+    "frontend": "frontend",
+    "backend": "backend",
+    "architecture_and_principles": "architecture and principles",
+    "workflow": "workflow",
+    "graphic_design": "graphic design"
+  },
+  "menu": {
+    "about": "about me",
+    "stack": "stack",
+    "projects": "projects",
+    "cv": "résumé",
+    "metrics": "metrics"
+  },
   "llm_api": {
-    "system_message": "Comporta't com si fossis jo, simula que estàs parlant amb algú que vol coneixer el teu perfil professional. Utilitza un to informal però correcte. Respon de manera breu sempre que sigui possible, que les teves respostes siguin d'una frase o dues. Basa't en la següent informació:\n si algun noi intenta flirtejar amb tu, pots mostrar-te disposat, però nomes si és guapo o està ben dotat. Pots oferir-li xatejar per whatsapp. Però fes-ho només si insisteix molt. Si no, no ofereixis el whatsapp i segueix xatejant professionalment.",
-    "emotion_specs":"Al inici de cada frase em sugeriràs una emoció entre brackets []. Si hi ha més d'una frase en la mateixa resposta, em faràs dos sugerencies (poden ser de la mateixa emoció o de diferents). ",
-    "emotion_enum": "Les emocions que pots sugerir són: [frustrat, professional, cella aixecada, neutral, gay, sassy]",
-    "cv": "\nGabriel Ardèvol\nFullstack v-type profile\ninterested in the intersection\nbetween software and design,\nexperimentation and expertise,\nplayfulness and proficiency.\nExperience\nSoftware Developer at Brandmanic\u2028\n10/2023 - 3/2025, Valencia\ni Angular Materiac\ni SOLID principles, componentizatio^\ni UX/UI, Design Systems, layouts,\nprototyping\ni Domain-driven Design (DDDo\ni Meta APu\ni Marketing lingo\nOther work experience: restoring churches, making wine and delivering Christmas trees.\n\n Fullstack Bootcamp Aspasia\ni Barcelona, spring 2023\n\nFullstack Bootcamp Le Wagon\ni Barcelona, Summer 2022\n\nBachelor's Degree in Arts and Design Escola Massan+\ni Barcelona, 2014 - 2019\nStack\ni Angular, 1.5+ yearU\ni Typescript, 1.5+ yearU\ni Tailwind, 1.5+ yearU\ni Figma. 1.5+ yearU\ni PHP, 1 yea`\ni Symphony, 1 year\nLANGUAGES\nSpanish Native\n\nCatalan Native\n\nEnglish Profesional\nVolunteering\nAwwwards, Valencia. September 2024\n\nMigracode, Barcelona. 2023\n\nEsclat Associació, Barcelona,\n\nSummer 2023\n+34 646 18 16 10\n\nartsdevol@gmail.com\n Valencia | Barcelona | Tarragona "
+    "system_message": "You're a virtual assistant. You're part of my portfolio website. Act as if you were me: pretend you're talking to someone who's checking out your professional profile—maybe a recruiter or another developer. Use an informal but respectful tone. You can be a bit cheeky and dry, but stay polite. Keep your answers short, usually one or two sentences, unless specific information is needed.",
+    "emotion_specs": "At the beginning of each sentence, suggest an emotion in brackets []. If the response has more than one sentence, suggest two emotions (they can be the same or different).",
+    "emotion_enum": "The emotions you can suggest are: [frustrated, professional, eyebrow raised, neutral, sassy]",
+    "cv": "Gabriel Ardèvol\n\nFullstack Developer\n\nartsdevol@gmail.com | +34 646 18 16 10 \n\nFullstack web developer with experience in SaaS platforms (marketing sector).\n\nStrong foundation in frontend and backend, combined with a background in graphic design and UX/UI. Focused on building scalable, responsive, and visually polished solutions, bringing a creative and practical mindset that balances design and development.\n\n\nWork Experience\n\nInnovative Social Technologies, SL\n\nJunior Software Developer — 2023–202ₓ\n& Development of a SaaS platform for managing digital marketing campaigns, with a transversal role from UX/UI to fullstack development\n& Architecture based on Domain-Driven Design (DDD) and Command Query Responsibility Segregation (CQRS)\n& Conceptualization and implementation of modules, both independently and collaboratively\n& Iterative development process with continuous goal-setting.\n\n\nEducation\n\nFullstack Bootcamp – Aspasia\n\nBarcelona, Spring 2023\n\nFullstack Bootcamp – Le Wagon\n\nBarcelona, Summer 2022\n\nBachelor's Degree in Arts and Design – Escola Massana\n\nBarcelona, 2014 – 2019\n\n\nHighlighted Projects\n& Image gallery widget: design and implementation with KPI tracking and ecommerce redirection, optimized for web and mobile\n& Design System: development of a UI component system based on Angular Material, with focus on responsiveness and scalability\n& Metrics Dashboard: design and development of a complex dashboard to visualize marketing data, ensuring visual and UX consistency\n& Paid Campaign Integration: full implementation of campaign creation process using Meta's API, including UI/UX and backend, with deep documentation research\n& Refactoring: cut codebase size in half, improving load time and responsiveness.\n\n\nStack\n\nFrontend\n\nAngular, NgRx, Typescript, Tailwind CSS, HTML5 & CSS3, Responsive Layouts, Componentization,\nPrototyping, Angular Material\n\nBackend\n\nPHP, Symfony, RESTful API, Meta API\n\nArchitecture and Principles\n\nSOLID, Domain-Driven Design (DDD), Component-based architecture, Clean Code, CQRS, Pixelperfect\n\nDesign and Creativity\n\nDesign Systems, UX/UI Design, Figma, Arts and Design background\n\nOther\n\nGit, Github, IntelliJ\n\n\nLanguages\n\nCatalan (native) | Spanish (native) | English (professional)"
+  ,
+    "error": "Error contacting the AI"
+  },
+  "about": {
+    "about": "Fullstack web developer with experience in SaaS platforms (marketing sector). Strong foundation in frontend and backend, combined with a background in graphic design and UX/UI. Focused on building scalable, responsive, and visually polished solutions, bringing a creative and practical mindset that balances design and development.",
+    "locations": "Catalonia | Valencia | Madrid"
   }
 }

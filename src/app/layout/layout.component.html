@@ -141,13 +141,13 @@
     <confetti-fillers-container>
       <div class="flex flex-col w-full items-between justify-between "
            [style.margin]="router.url == '/' || router.url == '/chat' ? '0' : '8px'"
-           [style.padding]="router.url == '/' || router.url == '/chat' ? '0' : '16px'"
            [ngClass]="router.url == '/' || router.url == '/chat' ? '' : 'border bg-white rounded-2xl overflow-auto'"
            style="max-width: 500px; height: calc(100vh - var(--navbar-height) - 20px)">
-        <div style="width: 100%;">
+        <div style="width: 100%;"
+             [style.padding]="router.url == '/' || router.url == '/chat' || router.url == '/cv' ? '0' : '16px'">
           <router-outlet></router-outlet>
         </div>
-        <div class="flex w-full justify-between mt-4 border-solid border-t"
+        <div class="flex w-full justify-between p-1"
              *ngIf="!(router.url == '/' || router.url == '/chat')">
           <div>
             <a *ngIf="routes.indexOf(this.router.url) > 0" (click)="goToPrevPage()">
@@ -155,9 +155,6 @@
                 <svg class="icon w-5 h-5">
                   <use xlink:href="/icons/arrow-left.svg"></use>
                 </svg>
-
-                <!--                <i class="bi bi-chevron-left"></i>prev-->
-
               </button>
             </a>
           </div>

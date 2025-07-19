@@ -5,6 +5,7 @@ import { ChatApi } from './chat.api';
 import {switchMap, map, catchError, tap, withLatestFrom} from 'rxjs/operators';
 import { of } from 'rxjs';
 import {Store} from '@ngrx/store';
+import {TranslateService} from '@ngx-translate/core';
 
 @Injectable()
 export class ChatEffects {
@@ -12,6 +13,8 @@ export class ChatEffects {
   private readonly chatService = inject(ChatApi);
   private readonly store = inject(Store);
 
+  constructor(private translate: TranslateService) {
+  }
   sendMessage$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(sendMessage),
@@ -21,7 +24,7 @@ export class ChatEffects {
             message: { 'content': responseText, 'role': 'assistant' }
           })),
           catchError(() => of(receiveMessage({
-            message: { 'content': 'Error al contactar amb la IA', 'role': 'assistant' }
+            message: { 'content': this.translate.instant("llm_api.error"), 'role': 'assistant' }
           })))
         )
       )
