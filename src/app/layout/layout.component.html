@@ -1,5 +1,6 @@
-<confetti-layout [menu]="menu">
-  <nav nav class="flex justify-between items-center p-1 border-b border-solid">
+<confetti-layout [menu]="menu" >
+  <nav nav class="flex justify-between items-center p-1 border-b border-solid"
+  [style.background-color]="'var(--navbar-color)'">
     <button class="aspect-square"
             [style.background-color]="router.url == '/' || router.url == '/chat' ? 'color-mix(in srgb, var(--dark-button-background) 15%, white 85%)' : ''"
             routerLink="/chat">
@@ -136,13 +137,13 @@
     </ul>
   </div>
 
-  <confetti-background content [density]="30">
+  <confetti-background content [density]="30" [style.background]="'var(--background-color)'">
 
     <confetti-fillers-container>
       <div class="flex flex-col w-full items-between justify-between "
            [style.margin]="router.url == '/' || router.url == '/chat' ? '0' : '8px'"
            [ngClass]="router.url == '/' || router.url == '/chat' ? '' : 'border bg-white rounded-2xl overflow-auto'"
-           style="max-width: 500px; height: calc(100vh - var(--navbar-height) - 20px)">
+           style="max-width: 500px; min-height: calc(100vh - var(--navbar-height) - 20px)">
         <div style="width: 100%;"
              [style.padding]="router.url == '/' || router.url == '/chat' || router.url == '/cv' ? '0' : '16px'">
           <router-outlet></router-outlet>

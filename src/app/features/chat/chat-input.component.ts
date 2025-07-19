@@ -19,7 +19,7 @@ import {ChatStore} from './services/chat.store';
         <input #chatInput class="confetti-border confetti-button-light" style="padding: 12px; border-radius: 10000px; flex: 1; aspect-ratio: 1 / 1" type="text">
 
         <confetti-background [density]="40" style="background: var(--dark-button-background); aspect-ratio: 1/1; color: var(--dark-button-text-color); border-radius: 12px">
-          <button (click)="$event.preventDefault(); chatStore.sendMessage(chatInput.value); chatInput.value = ''" style="aspect-ratio: 1/1; width: 100%; ">
+          <button [disabled]="disabled" (click)="$event.preventDefault(); chatStore.sendMessage(chatInput.value); chatInput.value = ''" style="aspect-ratio: 1/1; width: 100%; ">
             <i class="bi bi-send-fill" style="color: var(--dark-button-text-color)"></i>
           </button>
         </confetti-background>
