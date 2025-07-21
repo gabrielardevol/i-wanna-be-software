@@ -21,7 +21,7 @@ import {TranslatePipe} from '@ngx-translate/core';
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
-  menu: boolean = false;
+  menu: 'right' | 'left' | null = null;
   routes: string[] = ['/about', '/stack', '/cv'];
 
   constructor(private eRef: ElementRef, readonly router: Router, ) {}
@@ -29,7 +29,7 @@ export class LayoutComponent {
 
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent) {
-      this.menu = false;
+      this.menu = null;
 
   }
 

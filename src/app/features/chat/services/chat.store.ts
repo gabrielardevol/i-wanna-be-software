@@ -8,10 +8,12 @@ import nl from '../../../../../public/i18n/nl.json';
 
 export const greetingsMessage = () => {
   const lang = navigator.language.split('-')[0];
+  console.log("lang: ", lang)
   if (lang === 'es') return "Hola, ¿en qué puedo ayudarte?";
   else if (lang === 'ca') return "Hola, en què et puc ajudar?";
-  else if (lang === 'nl') return "Hola, ¿en qué puedo ayudarte?";
+  else if (lang === 'nl') return "Hallo, waarmee kan ik je helpen?";
   else return "Welcome, anything I can do for you?";
+
 }
 
 export const systemPrompt = () => {
@@ -73,7 +75,7 @@ export const initialState: ChatState = {
     }
     return [
       { content: systemPrompt(), role: 'system' },
-      { content: 'Hola, en què et puc ajudar?', role: 'assistant' }
+      { content: greetingsMessage(), role: 'assistant' }
     ] as MessageModel[];
   })()
 };

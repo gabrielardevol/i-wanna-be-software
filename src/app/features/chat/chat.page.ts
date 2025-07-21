@@ -106,8 +106,8 @@ export class ChatPage {
 
   removeEmotionNotation(content: string) {
     if (typeof content !== 'string') {
-      console.log('content: ', content);
-      return ''; // o pots retornar content?.toString() si vols convertir-ho
+      // console.log('content: ', content);
+      return '';
     }
     return content.replace(/\[[^\]]*\]/g, '').trim();  }
 }

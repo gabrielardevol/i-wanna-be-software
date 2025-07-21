@@ -1,4 +1,4 @@
-<confetti-layout [menu]="menu" >
+<confetti-layout [menu]="'left'" >
   <nav nav class="flex justify-between items-center p-1 border-b border-solid"
   [style.background-color]="'var(--navbar-color)'">
     <button class="aspect-square"
@@ -8,7 +8,7 @@
     </button>
     <p routerLink="/">
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2562.8933923411532 194.32752688562323"
-           height="20"><!-- svg-source:excalidraw -->
+           height="16"><!-- svg-source:excalidraw -->
         <metadata></metadata>
         <defs>
           <style class="style-fonts">
@@ -107,14 +107,14 @@
       </svg>
     </p>
     <button class="aspect-square"
-            (click)="$event.stopPropagation(); menu = !menu"
+            (click)="$event.stopPropagation(); menu ? menu = null : menu = 'right'"
             [style.background-color]="menu ? 'color-mix(in srgb, var(--dark-button-background) 15%, white 85%)' : ''">
       <i class="bi bi-three-dots-vertical"></i>
     </button>
   </nav>
 
-  <div menu #menu *ngIf="menu" style="background: var(--sidebar-background-color); border-radius: 16px;  ">
-    <ul class="flex flex-col gap-2 w-[150px]">
+  <div menu #menu *ngIf="menu" style="background: var(--sidebar-background-color); border-radius: 0 0 0 16px; border-bottom: 1px solid; border-left: 1px solid;">
+    <ul class="flex flex-col gap-2 w-[150px] pl-2 py-2">
       <li routerLink="/about"
           [style.background-color]="router.url == '/about' ? 'color-mix(in srgb, var(--dark-button-background) 15%, white 85%)' : ''"
       >{{ 'menu.about' | translate }}
